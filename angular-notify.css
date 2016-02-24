@@ -1,4 +1,43 @@
 .cg-notify-message {
+    visibility: hidden;
+}
+
+@keyframes cgNotifyFadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cgNotifyFadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.cg-notify-fadeInDown {
+    animation-name: cgNotifyFadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.cg-notify-fadeOutUp {
+    animation-name: cgNotifyFadeOutUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.cg-notify-message {
     position:fixed;
     top:0px;
     z-index: 9999;
@@ -11,15 +50,19 @@
     border: 1px solid #bce8f1;
     border-radius: 4px;
 
-    -webkit-transition: top 0.5s ease-out,opacity 0.2s ease-out;
-    -moz-transition: top 0.5s ease-out,opacity 0.2s ease-out;
-    -o-transition: top 0.5s ease-out,opacity 0.2s ease-out;
-    transition: top 0.5s ease-out,opacity 0.2s ease-out;    
+    -webkit-transition: top 0.5s ease-out;
+    -moz-transition: top 0.5s ease-out;
+    -o-transition: top 0.5s ease-out;
+    transition: top 0.5s ease-out;
 
     visibility:hidden;
 
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.cg-notify-message:first-of-type {
+    top: 10px;
 }
 
 .cg-notify-message-center {
@@ -60,7 +103,7 @@
     position: absolute;
     top: 0px;
     right: 3px;
-    line-height: 15px;    
+    line-height: 15px;
 }
 
 .cg-notify-close:hover, .cg-notify-close:focus {

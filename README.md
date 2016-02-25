@@ -43,8 +43,11 @@ The `notify` function can either be passed a string or an object.  When passing 
 
 * `message` - Required.  The message to show.
 * `duration` - Optional.  The duration (in milliseconds) of message.  A duration of 0 will prevent messages from closing automatically.
+* `animationDuration` - Optional. The duration (in milliseconds) of the CSS animation you've used. This prevents the notification to be removed when the animation is still playing.
 * `templateUrl` - Optional.  A custom template for the UI of the message.
 * `classes` - Optional. A list of custom CSS classes to apply to the message element.
+* `openAnimationClass` - Optional. Your animation class, applied when the notification is displayed.
+* `closeAnimationClass` - Optional. Your animation class, applied when the notification is closed.
 * `messageTemplate` - Optional. A string containing any valid Angular HTML which will be shown instead of the regular `message` text. The string must contain one root element like all valid Angular HTML templates (so wrap everything in a `<span>`).
 * `scope` - Optional.  A valid Angular scope object.  The scope of the template will be created by calling `$new()` on this scope.
 * `position` - Optional.  `center`, `left` and `right` are the only acceptable values.
@@ -57,8 +60,6 @@ This function will return an object with a `close()` method and a `message` prop
 Call `config` to set the default configuration options for angular-notify.  The following options may be specified in the given object:
 
 * `duration` - The default duration (in milliseconds) of each message.  A duration of 0 will prevent messages from closing automatically.
-* `startTop` - The Y pixel value where messages will be shown.
-* `verticalSpacing` - The number of pixels that should be reserved between messages vertically.
 * `templateUrl` - The default message template.
 * `position` - The default position of each message.  `center`, `left` and `right` are the supported values.
 * `container` - The default element that contains each notification.  Defaults to `document.body`.
@@ -78,6 +79,11 @@ The `messageTemplate` property is also included on the scope as `$messageTemplat
 
 
 ## Release History
+
+ * Temporal Release for internal fixes (Olapic/sergiolepore)
+   * Support for custom CSS animations
+   * Fixed element removal from DOM
+
  * v2.5.0 - 04/12/2015
    * New `duration` property per notification.
    * New `position` property per notification.

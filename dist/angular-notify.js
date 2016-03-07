@@ -34,7 +34,7 @@ angular.module('cgNotify', []).factory('notify',['$timeout','$http','$compile','
             if (maximumOpen > 0) {
                 var numToClose = (openNotificationsScope.length + 1) - maximumOpen;
                 for (var i = 0; i < numToClose; i++) {
-                    openNotificationsScope.pop().$close();
+                    openNotificationsScope.pop().$close(true);
                 }
             }
 
@@ -71,14 +71,18 @@ angular.module('cgNotify', []).factory('notify',['$timeout','$http','$compile','
                     messageElements.splice(messageElements.indexOf(templateElement),1);
                 };
 
-                scope.$close = function(){
-                    templateElement
-                        .removeClass(args.openAnimationClass)
-                        .addClass(args.closeAnimationClass);
-
-                    $timeout(function() {
+                scope.$close = function(immediate){
+                    if (immediate) {
                         removeTemplateElement();
-                    }, args.animationDuration + 500);
+                    } else {
+                        templateElement
+                            .removeClass(args.openAnimationClass)
+                            .addClass(args.closeAnimationClass);
+
+                        $timeout(function() {
+                            removeTemplateElement();
+                        }, args.animationDuration + 500);
+                    }
                 };
 
                 $timeout(function() {
